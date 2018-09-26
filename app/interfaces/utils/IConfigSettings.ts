@@ -9,13 +9,6 @@ interface EnvConfig {
   oAuthSecret: string;
 }
 
-interface TwilioConfig {
-  sid: string;
-  token: string;
-  number: string;
-}
-
 export {
-  EnvConfig,
-  TwilioConfig
+  EnvConfig
 };

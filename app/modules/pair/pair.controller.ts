@@ -3,7 +3,7 @@ import { IPair } from '../../../app/interfaces/models';
 import { IExchange } from '../../../app/interfaces/models';
 import IController from '../../interfaces/utils/IController';
 import { IRequest, IResponse } from '../../interfaces/utils/IServer';
-import { env } from '../../../config/env';
+import { hash } from 'bcrypt';
 import Pair from '../../models/pair.model';
 import Exchange from '../../models/exchange.model';
 import * as restify from 'restify';
@@ -18,13 +18,14 @@ export default class PairController implements IController {
       } else {
         const pair = {
           key: req.body.key,
-          secret: req.body.secret,
+          secret: await hash(req.body.secret, 12),
           exchangeId: exchange.exchangeId
         };
         const saved = <IPair> await Pair.create(pair);
         return res.send(saved);
       }
     } catch (e) {
+      console.log(e);
       req.log.error(e);
       return res.send(new InternalServerError());
     }

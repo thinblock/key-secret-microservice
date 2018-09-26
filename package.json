@@ -27,7 +27,6 @@
     "restify-joi-middleware": "^5.0.0",
     "restify-logger": "^2.0.1",
     "sequelize": "^4.38.0",
-    "twilio": "^3.19.1",
     "yarn": "^1.9.4"
   },
   "devDependencies": {

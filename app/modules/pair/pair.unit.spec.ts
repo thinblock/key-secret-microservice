@@ -18,24 +18,33 @@ describe('Unit Testing', () => {
   describe('Pair API', () => {
     describe('POST /api/pairs/', () => {
       const pairObj = {
-        'exchangeId': '1234',
+        'exchangeId': 1234,
         'key': '1',
         'secret': '1',
       };
       const pairReturn = {
         '_id': '5b964b2753927fddb77f1f0b',
-        'exchangeId': '1234',
+        'exchangeId': 1234,
         'key': '1',
         'secret': '1',
         'created_at': '2018-09-10T10:44:55.218Z',
         'updated_at': '2018-09-10T10:44:55.218Z',
         '__v': 0
       };
+      const exchangeObj = {
+        '_id': '5b964b2753927fddb77f1f0b',
+        'exchangeId': 1234,
+        'name': 'btc'
+      };
+
       it('should save pair successfully', (done) => {
         sandbox
           .mock(Exchange)
           .expects('findOne')
-          .resolves(null);
+          .withArgs({
+            exchangeId: 1234
+          })
+          .resolves(exchangeObj);
         sandbox
           .mock(Pair)
           .expects('create')
@@ -56,7 +65,10 @@ describe('Unit Testing', () => {
         sandbox
           .mock(Exchange)
           .expects('findOne')
-          .resolves(null);
+          .withArgs({
+            exchangeId: 1234
+          })
+          .resolves(exchangeObj);
         sandbox
           .mock(Pair)
           .expects('create')
@@ -69,6 +81,26 @@ describe('Unit Testing', () => {
               done(err);
             } else {
               expect(res.status).to.equal(500);
+              done();
+            }
+          });
+      });
+      it('should throw 404 if exchange not found', (done) => {
+        sandbox
+          .mock(Exchange)
+          .expects('findOne')
+          .withArgs({
+            exchangeId: 1234
+          })
+          .resolves(null);
+        supertest(app)
+          .post('/api/pairs')
+          .send(pairObj)
+          .end((err: any, res: supertest.Response) => {
+            if (err) {
+              done(err);
+            } else {
+              expect(res.status).to.equal(404);
               done();
             }
           });

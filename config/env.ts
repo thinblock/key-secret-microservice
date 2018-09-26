@@ -28,10 +28,4 @@ const config = (): IConfigSettings.EnvConfig => {
   return configObj;
 };
 
-const twilio: IConfigSettings.TwilioConfig = {
-  sid: 'AC24a1e734285a8c2ca2c1efc8ed86cdbc',
-  number: '+19312402005',
-  token: '7c6020c389cb0e917ace37445767ffff'
-};
-
-export { env, config, twilio };
+export { env, config };
