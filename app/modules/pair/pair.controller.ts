@@ -25,7 +25,6 @@ export default class PairController implements IController {
         return res.send(saved);
       }
     } catch (e) {
-      console.log(e);
       req.log.error(e);
       return res.send(new InternalServerError());
     }
