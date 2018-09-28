@@ -1,6 +1,5 @@
 import { InternalServerError } from 'restify-errors';
 import { IPair } from '../../../app/interfaces/models';
-import { IExchange } from '../../../app/interfaces/models';
 import IController from '../../interfaces/utils/IController';
 import { IRequest, IResponse } from '../../interfaces/utils/IServer';
 import { hash } from 'bcrypt';
