@@ -1,3 +1,6 @@
+# Config JSON
+config/exchanges.json
+
 # Webstorm editor configuration
 .idea/
 
