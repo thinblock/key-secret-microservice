@@ -11,6 +11,11 @@ class PairRoute implements IRoute {
         method: HttpMethods.POST,
         auth: AuthStrategies.OAUTH,
         handler: this.controller.post,
+      },
+      {
+        method: HttpMethods.GET,
+        auth: AuthStrategies.PUBLIC,
+        handler: this.controller.get,
       }
     ];
   }
