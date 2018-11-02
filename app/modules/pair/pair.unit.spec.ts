@@ -17,7 +17,7 @@ describe('Unit Testing', () => {
   describe('Pair API', () => {
     describe('POST /api/pairs/', () => {
       const pairObj = {
-        'exchange': 'exchange_1',
+        'exchange': 'exchange_2',
         'key': '1',
         'secret': '1',
         'user_id': '1234'
@@ -27,10 +27,10 @@ describe('Unit Testing', () => {
         'key': '1',
         'secret': '1',
         'user_id': '1234'
-      }
+      };
       const pairReturn = {
         '_id': '5b964b2753927fddb77f1f0b',
-        'exchange_id': 'exchange_1',
+        'exchange_id': 'exchange_2',
         'key': '1',
         'secret': '1',
         'user_id': '1234',
@@ -90,7 +90,7 @@ describe('Unit Testing', () => {
 
     describe('GET /api/pairs/', () => {
       const pairObj = {
-        'exchange': 'exchange_1',
+        'exchange': 'exchange_2',
         'key': '1',
         'secret': '1',
         'user_id': '1234'
@@ -100,10 +100,10 @@ describe('Unit Testing', () => {
         'key': '1',
         'secret': '1',
         'user_id': '1234'
-      }
+      };
       const pairReturn = {
         '_id': '5b964b2753927fddb77f1f0b',
-        'exchange_id': 'exchange_1',
+        'exchange_id': 'exchange_2',
         'key': '1',
         'secret': '1',
         'user_id': '1234',
@@ -118,7 +118,7 @@ describe('Unit Testing', () => {
           .expects('findOne')
           .resolves(pairReturn);
         supertest(app)
-          .get('/api/pairs?user_id=1234&exchange=exchange_1')
+          .get('/api/pairs?user_id=1234&exchange=exchange_2')
           .end((err: any, res: supertest.Response) => {
             if (err) {
               done(err);
@@ -134,7 +134,7 @@ describe('Unit Testing', () => {
           .expects('findOne')
           .throws(null);
         supertest(app)
-          .get('/api/pairs?user_id=1234&exchange=exchange_1')
+          .get('/api/pairs?user_id=1234&exchange=exchange_2')
           .end((err: any, res: supertest.Response) => {
             if (err) {
               done(err);
