@@ -9,8 +9,12 @@ const PairsSchema = new Schema({
     type: String,
     required: true
   },
-  exchangeId: {
+  exchange_id: {
     type: Number,
+    required: true
+  },
+  user_id: {
+    type: String,
     required: true
   },
   created_at: { type: Date, default: Date.now },
@@ -23,7 +27,8 @@ export interface IPair extends Document {
   _id: Schema.Types.ObjectId;
   key: string;
   secret: string;
-  exchangeId: number;
+  exchange_id: number;
+  user_id: string;
   created_at?: Date;
   updated_at?: Date;
 }

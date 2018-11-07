@@ -15,7 +15,8 @@ const config = (): IConfigSettings.EnvConfig => {
     debug: debug,
     root: path.join(__dirname, '/..'),
     port: 8080,
-    db: process.env.TB_KEY_SECRET_DB_STRING,
+    key: '123SuperSecret Key123',
+    db: process.env.TB_KEY_SECRET_DB_STRING || 'mongodb://127.0.0.1:27017/key-secret-local',
     oAuthSecret: process.env.TB_OAUTH_SECRET || 'asdfasfshdfklsahfsl'
   };
 

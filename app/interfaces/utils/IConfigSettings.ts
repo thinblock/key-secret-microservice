@@ -5,6 +5,7 @@ interface EnvConfig {
   env: string;
   debug: boolean;
   db: string;
+  key: string;
   test: boolean;
   oAuthSecret: string;
 }
