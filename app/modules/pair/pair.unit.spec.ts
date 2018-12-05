@@ -15,7 +15,7 @@ describe('Unit Testing', () => {
     sandbox.restore();
   });
   describe('Pair API', () => {
-    describe('POST /api/pairs/', () => {
+    describe('POST /pairs/', () => {
       const pairObj = {
         'exchange': 'exchange_2',
         'key': '1',
@@ -45,7 +45,7 @@ describe('Unit Testing', () => {
           .expects('create')
           .resolves(pairReturn);
         supertest(app)
-          .post('/api/pairs')
+          .post('/pairs')
           .send(pairObj)
           .end((err: any, res: supertest.Response) => {
             if (err) {
@@ -62,7 +62,7 @@ describe('Unit Testing', () => {
           .expects('create')
           .throws(null);
         supertest(app)
-          .post('/api/pairs')
+          .post('/pairs')
           .send(pairObj)
           .end((err: any, res: supertest.Response) => {
             if (err) {
@@ -75,7 +75,7 @@ describe('Unit Testing', () => {
       });
       it('should throw 404 if exchange not found', (done) => {
         supertest(app)
-          .post('/api/pairs')
+          .post('/pairs')
           .send(incorrectPairObj)
           .end((err: any, res: supertest.Response) => {
             if (err) {
@@ -88,7 +88,7 @@ describe('Unit Testing', () => {
       });
     });
 
-    describe('GET /api/pairs/', () => {
+    describe('GET /pairs/', () => {
       const pairObj = {
         'exchange': 'exchange_2',
         'key': '1',
@@ -118,7 +118,7 @@ describe('Unit Testing', () => {
           .expects('findOne')
           .resolves(pairReturn);
         supertest(app)
-          .get('/api/pairs?user_id=1234&exchange=exchange_2')
+          .get('/pairs?user_id=1234&exchange=exchange_2')
           .end((err: any, res: supertest.Response) => {
             if (err) {
               done(err);
@@ -134,7 +134,7 @@ describe('Unit Testing', () => {
           .expects('findOne')
           .throws(null);
         supertest(app)
-          .get('/api/pairs?user_id=1234&exchange=exchange_2')
+          .get('/pairs?user_id=1234&exchange=exchange_2')
           .end((err: any, res: supertest.Response) => {
             if (err) {
               done(err);
@@ -146,7 +146,7 @@ describe('Unit Testing', () => {
       });
       it('should throw 404 if exchange not found', (done) => {
         supertest(app)
-          .get('/api/pairs?user_id=1234&exchange=exchange_123')
+          .get('/pairs?user_id=1234&exchange=exchange_123')
           .send(incorrectPairObj)
           .end((err: any, res: supertest.Response) => {
             if (err) {
