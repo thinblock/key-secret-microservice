@@ -66,7 +66,7 @@ const buildServer = async (): Promise<restify.Server> => {
       routes.forEach((route) => {
         const argsArr = [];
         const options = {
-          path: '/api' + basePath + (route.param ? ('/:' + route.param) : ''),
+          path: basePath + (route.param ? ('/:' + route.param) : ''),
           validation: route.validation
         };
         argsArr.push(options);

@@ -18,7 +18,7 @@ export default class PairController implements IController {
           key: req.body.key,
           secret: CryptoJS.AES.encrypt(req.body.secret, config().key),
           exchange_id: exchangeIds[req.body.exchange],
-          user_id: req.body.user_id
+          user_id: req.client_id + req.body.user_id
         };
         const saved = <IPair> await Pair.create(pair);
         return res.send(saved);
